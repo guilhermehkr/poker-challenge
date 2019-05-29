@@ -43,7 +43,7 @@ public class FileReaderTest {
     }
 
     @Test(dataProvider = "inputs")
-    public void shouldReadFileSuccessfullyGivenNoHands(InputStream input) throws IOException {
+    public void shouldReturnEmptyCollectionGivenNoHands(InputStream input) throws IOException {
 
         List<String> lines = testInstance.readFileFrom(input);
         assertThat(lines, is(empty()));
@@ -54,7 +54,6 @@ public class FileReaderTest {
         return new Object[][]{
                 {format(LINES_FORMAT, FIRST_HAND, SECOND_HAND).getBytes()},
                 {format(LINES_FORMAT, FIRST_HAND_WHITESPACE, SECOND_HAND_WHITESPACE).getBytes()}
-
         };
     }
 
