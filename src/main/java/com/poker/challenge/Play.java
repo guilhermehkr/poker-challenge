@@ -1,20 +1,37 @@
 package com.poker.challenge;
 
+import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
+
 public class Play {
 
-    private String playerOneHand;
-    private String playerTwoHand;
+    private List<Card> playerOneCards;
+    private List<Card> playerTwoCards;
+    private boolean isInvalidHand;
 
-    public Play(String playerOneHand, String playerTwoHand) {
-        this.playerOneHand = playerOneHand;
-        this.playerTwoHand = playerTwoHand;
+    public Play(List<Card> playerOneCards, List<Card> playerTwoCards) {
+        this.playerOneCards = unmodifiableList(playerOneCards);
+        this.playerTwoCards = unmodifiableList(playerTwoCards);
     }
 
-    public void setPlayerOneHand(String playerOneHand) {
-        this.playerOneHand = playerOneHand;
+    public Play(boolean isInvalid) {
+        this.isInvalidHand = isInvalid;
     }
 
-    public void setPlayerTwoHand(String playerTwoHand) {
-        this.playerTwoHand = playerTwoHand;
+    public List<Card> getPlayerOneCards() {
+        return playerOneCards;
+    }
+
+    public List<Card> getPlayerTwoCards() {
+        return playerTwoCards;
+    }
+
+    public boolean isInvalidHand() {
+        return isInvalidHand;
+    }
+
+    public boolean isValidHand() {
+        return !isInvalidHand;
     }
 }
