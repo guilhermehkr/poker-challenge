@@ -22,10 +22,10 @@ public class FileReaderTest {
     public static final String LINES_FORMAT = "%s " + lineSeparator() + " %s";
 
     public static final String FIRST_HAND = "9C 9D 8D 7C 3C 2S KD TH 9H 8H";
-    public static final String SECOND_HAND = "9C 9D 8D 7C 3C 2S KD TH 9H 8H";
+    public static final String SECOND_HAND = "6C 5H AS 4H 7S 2S KD 7H 2C AC";
 
     public static final String FIRST_HAND_WHITESPACE = "   9C 9D 8D 7C 3C 2S KD TH 9H 8H  ";
-    public static final String SECOND_HAND_WHITESPACE = "    9C 9D 8D 7C 3C 2S KD TH 9H 8H    ";
+    public static final String SECOND_HAND_WHITESPACE = "    6C 5H AS 4H 7S 2S KD 7H 2C AC    ";
 
     private FileReader testInstance;
 

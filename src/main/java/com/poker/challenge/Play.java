@@ -3,6 +3,7 @@ package com.poker.challenge;
 import java.util.List;
 
 import static java.util.Collections.unmodifiableList;
+import static org.apache.commons.lang.builder.ToStringBuilder.reflectionToString;
 
 public class Play {
 
@@ -10,13 +11,10 @@ public class Play {
     private List<Card> playerTwoCards;
     private boolean isInvalidHand;
 
-    public Play(List<Card> playerOneCards, List<Card> playerTwoCards) {
+    Play(List<Card> playerOneCards, List<Card> playerTwoCards, boolean isInvalidHand) {
         this.playerOneCards = unmodifiableList(playerOneCards);
         this.playerTwoCards = unmodifiableList(playerTwoCards);
-    }
-
-    public Play(boolean isInvalid) {
-        this.isInvalidHand = isInvalid;
+        this.isInvalidHand = isInvalidHand;
     }
 
     public List<Card> getPlayerOneCards() {
@@ -33,5 +31,10 @@ public class Play {
 
     public boolean isValidHand() {
         return !isInvalidHand;
+    }
+
+    @Override
+    public String toString() {
+        return reflectionToString(this);
     }
 }

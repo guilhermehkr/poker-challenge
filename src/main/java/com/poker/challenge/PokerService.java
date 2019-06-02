@@ -13,8 +13,9 @@ public class PokerService {
     private CardTranslator cardTranslator;
 
     @Autowired
-    public PokerService(HandToPlayTransformer handToPlayTransformer) {
+    public PokerService(HandToPlayTransformer handToPlayTransformer, CardTranslator cardTranslator) {
         this.handToPlayTransformer = handToPlayTransformer;
+        this.cardTranslator = cardTranslator;
     }
 
     public void play(List<String> hands) {
@@ -22,7 +23,9 @@ public class PokerService {
         hands.stream()
                 .map(handToPlayTransformer::transform)
                 .map(cardTranslator::translate)
-                .map(play -> "") // literally play (evaluate who's the winner)
-                .reduce(null); // reduce the results to number of victories of each player
+                .forEach(System.out::println)
+                //.map(play -> ) // literally play (evaluate who's the winner)
+                //.reduce(null) // reduce the results to number of victories of each player
+        ;
     }
 }

@@ -6,25 +6,12 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.google.common.collect.Lists.newArrayList;
-import static com.poker.challenge.Card.newCard;
+import static com.poker.challenge.CardUtil.createCards;
 import static com.poker.challenge.FileReaderTest.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class HandToPlayTransformerTest {
-
-    public final static List<Card> FIRST_HAND_PLAYER_ONE_CARDS =
-            newArrayList(newCard("9C"), newCard("9D"), newCard("8D"), newCard("7C"), newCard("3C"));
-
-    public final static List<Card> FIRST_HAND_PLAYER_TWO_CARDS =
-            newArrayList(newCard("2S"), newCard("KD"), newCard("TH"), newCard("9H"), newCard("8H"));
-
-    public final static List<Card> SECOND_HAND_PLAYER_ONE_CARDS =
-            newArrayList(newCard("9C"), newCard("9D"), newCard("8D"), newCard("7C"), newCard("3C"));
-
-    public final static List<Card> SECOND_HAND_PLAYER_TWO_CARDS =
-            newArrayList(newCard("2S"), newCard("KD"), newCard("TH"), newCard("9H"), newCard("8H"));
 
     private HandToPlayTransformer testInstance;
 
@@ -48,16 +35,24 @@ public class HandToPlayTransformerTest {
 
         Play play = testInstance.transform(invalidHand);
 
-        assertThat(play.getPlayerOneCards(), is(nullValue()));
-        assertThat(play.getPlayerTwoCards(), is(nullValue()));
+        assertThat(play.getPlayerOneCards(), is(empty()));
+        assertThat(play.getPlayerTwoCards(), is(empty()));
         assertThat("The given hand should be invalid", play.isInvalidHand());
     }
 
     @DataProvider
     public Object[][] validHands() {
         return new Object[][]{
-                {FIRST_HAND, FIRST_HAND_PLAYER_ONE_CARDS, FIRST_HAND_PLAYER_TWO_CARDS},
-                {SECOND_HAND, SECOND_HAND_PLAYER_ONE_CARDS, SECOND_HAND_PLAYER_TWO_CARDS}
+                {
+                        FIRST_HAND,
+                        createCards("9C", "9D", "8D", "7C", "3C"),
+                        createCards("2S", "KD", "TH", "9H", "8H")
+                },
+                {
+                        SECOND_HAND,
+                        createCards("6C", "5H", "AS", "4H", "7S"),
+                        createCards("2S", "KD", "7H", "2C", "AC")
+                }
         };
     }
 

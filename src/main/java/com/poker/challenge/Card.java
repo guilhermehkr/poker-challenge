@@ -5,27 +5,12 @@ import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 
 public class Card implements Comparable<Card> {
 
-    public final static int VALUE_INDEX_BEGIN = 0;
-    public final static int VALUE_INDEX_END = 1;
-    public final static int SUIT_INDEX_BEGIN = 1;
-    public final static int SUIT_INDEX_END = 2;
-
     private String value;
     private String suit;
 
-    private Card(String value, String suit) {
+    Card(String value, String suit) {
         this.value = value;
         this.suit = suit;
-    }
-
-    static Card newCard(String stringCard) {
-        String value = stringCard.substring(VALUE_INDEX_BEGIN, VALUE_INDEX_END);
-        String suit = stringCard.substring(SUIT_INDEX_BEGIN, SUIT_INDEX_END);
-        return new Card(value, suit);
-    }
-
-    static Card newCard(String value, String suit) {
-        return new Card(value, suit);
     }
 
     public String getValue() {
@@ -57,6 +42,15 @@ public class Card implements Comparable<Card> {
 
     @Override
     public int compareTo(Card anotherCard) {
-        return this.getValueAsInt().compareTo(anotherCard.getValueAsInt());
+
+        int result;
+        if (anotherCard == null) {
+            result = -1;
+        } else if (anotherCard.getValueAsInt() == null && this.getValueAsInt() == null) {
+            result = 0;
+        } else {
+            result = this.getValueAsInt().compareTo(anotherCard.getValueAsInt());
+        }
+        return result;
     }
 }
