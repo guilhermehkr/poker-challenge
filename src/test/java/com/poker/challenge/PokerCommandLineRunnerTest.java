@@ -10,7 +10,6 @@ import java.util.List;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
-import static org.testng.Assert.*;
 
 public class PokerCommandLineRunnerTest {
 
@@ -18,7 +17,7 @@ public class PokerCommandLineRunnerTest {
     private PokerCommandLineRunner testInstance;
 
     @Mock
-    private PokerService pokerService;
+    private GameService gameService;
 
     @Mock
     private FileReader fileReader;
@@ -37,6 +36,6 @@ public class PokerCommandLineRunnerTest {
         testInstance.run();
 
         verify(fileReader).readFileFrom(System.in);
-        verify(pokerService).play(lines);
+        verify(gameService).start(lines);
     }
 }

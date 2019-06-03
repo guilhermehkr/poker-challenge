@@ -9,12 +9,12 @@ import java.util.List;
 @Component
 public class PokerCommandLineRunner implements CommandLineRunner {
 
-    private PokerService pokerService;
+    private GameService gameService;
     private FileReader fileReader;
 
     @Autowired
-    public PokerCommandLineRunner(PokerService pokerService, FileReader fileReader) {
-        this.pokerService = pokerService;
+    public PokerCommandLineRunner(GameService gameService, FileReader fileReader) {
+        this.gameService = gameService;
         this.fileReader = fileReader;
     }
 
@@ -22,6 +22,6 @@ public class PokerCommandLineRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         List<String> hands = fileReader.readFileFrom(System.in);
-        pokerService.play(hands);
+        gameService.start(hands);
     }
 }

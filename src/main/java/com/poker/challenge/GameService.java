@@ -6,25 +6,25 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PokerService {
+public class GameService {
 
     private HandToPlayTransformer handToPlayTransformer;
 
     private CardTranslator cardTranslator;
 
     @Autowired
-    public PokerService(HandToPlayTransformer handToPlayTransformer, CardTranslator cardTranslator) {
+    public GameService(HandToPlayTransformer handToPlayTransformer, CardTranslator cardTranslator) {
         this.handToPlayTransformer = handToPlayTransformer;
         this.cardTranslator = cardTranslator;
     }
 
-    public void play(List<String> hands) {
+    public void start(List<String> hands) {
 
         hands.stream()
                 .map(handToPlayTransformer::transform)
                 .map(cardTranslator::translate)
                 .forEach(System.out::println)
-                //.map(play -> ) // literally play (evaluate who's the winner)
+                //.map(start -> ) // literally start (evaluate who's the winner)
                 //.reduce(null) // reduce the results to number of victories of each player
         ;
     }
