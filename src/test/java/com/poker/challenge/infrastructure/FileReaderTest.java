@@ -1,4 +1,4 @@
-package com.poker.challenge;
+package com.poker.challenge.infrastructure;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 public class FileReaderTest {
 
     public static final String EMPTY = "";
-    public static final String LINES_FORMAT = "%s " + lineSeparator() + " %s";
+    private static final String LINES_FORMAT = "%s " + lineSeparator() + " %s";
 
     public static final String FIRST_HAND = "9C 9D 8D 7C 3C 2S KD TH 9H 8H";
     public static final String SECOND_HAND = "6C 5H AS 4H 7S 2S KD 7H 2C AC";

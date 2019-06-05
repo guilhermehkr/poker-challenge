@@ -1,4 +1,4 @@
-package com.poker.challenge;
+package com.poker.challenge.round.card;
 
 import static java.lang.Integer.valueOf;
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;

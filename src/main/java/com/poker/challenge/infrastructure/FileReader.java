@@ -1,4 +1,4 @@
-package com.poker.challenge;
+package com.poker.challenge.infrastructure;
 
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class FileReader {
 
-    public List<String> readFileFrom(InputStream input) throws IOException {
+    List<String> readFileFrom(InputStream input) throws IOException {
 
         List<String> lines = new LinkedList<>();
         if (input != null) {

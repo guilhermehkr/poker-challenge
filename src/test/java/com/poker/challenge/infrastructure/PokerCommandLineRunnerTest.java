@@ -1,6 +1,8 @@
-package com.poker.challenge;
+package com.poker.challenge.infrastructure;
 
-import org.mockito.*;
+import com.poker.challenge.service.GameService;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
