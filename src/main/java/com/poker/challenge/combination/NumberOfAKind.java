@@ -13,19 +13,20 @@ public abstract class NumberOfAKind {
 
     protected final static int NUMBER_OF_COMBINATIONS = 1;
 
-    protected boolean checkIf(List<Card> cards, int number, int numberOfOccur) {
-        Map<String, Long> cardValueAndOccurrence =
+    boolean checkIf(List<Card> cards, final Long expectedNumberOfOccurrences, int expectedNumberOfCombinations) {
+
+        Map<String, Long> cardValueAndNumberOfOccurrence =
                 emptyIfNull(cards)
                         .stream()
                         .collect(groupingBy(Card::getValue, counting()));
 
-        long occurrences =
-                cardValueAndOccurrence
+        long numberOfCombinations =
+                cardValueAndNumberOfOccurrence
                         .values()
                         .stream()
-                        .filter(count -> count == number)
+                        .filter(expectedNumberOfOccurrences::equals)
                         .count();
 
-        return occurrences == numberOfOccur;
+        return numberOfCombinations == expectedNumberOfCombinations;
     }
 }

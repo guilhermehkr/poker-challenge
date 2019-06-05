@@ -6,7 +6,7 @@ import java.util.List;
 
 public class FourOfAKind extends NumberOfAKind implements Combination {
 
-    public final static int FOUR_OF_A_KIND = 4;
+    public final static Long FOUR_OF_A_KIND = 4L;
 
     @Override
     public boolean checkCombination(List<Card> cards) {

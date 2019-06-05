@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Pair extends NumberOfAKind implements Combination {
 
-    public final static int PAIR = 2;
+    public final static Long PAIR = 2L;
 
     @Override
     public boolean checkCombination(List<Card> cards) {
