@@ -1,49 +1,41 @@
 package com.poker.challenge.service;
 
-import com.poker.challenge.round.card.Card;
+import com.poker.challenge.combination.RankService;
+import com.poker.challenge.combination.Rank;
 import com.poker.challenge.round.Round;
+import com.poker.challenge.round.RoundResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
-import static org.apache.commons.collections4.CollectionUtils.emptyIfNull;
 
 @Service
 public class PokerService {
 
-    public Round play(Round round) {
+    private RankService rankService;
 
-        return null;
-        /*Map<String, Integer> report = new HashMap<>();
-        round.getPlayerOneCards()
-                .forEach(card -> {
-                    Integer count = report.get(card.getValue()) == null ? 0 : report.get(card.getValue());
-                    report.put(card.getValue(), ++count);
-                });
+    @Autowired
+    public PokerService(RankService rankService) {
+        this.rankService = rankService;
+    }
 
-        List<String> values = round.getPlayerOneCards()
-                .stream()
-                .map(Card::getValue)
-                .distinct()
-                .collect(Collectors.toList());
+    public RoundResult play(final Round round) {
 
-        System.out.println(report);
+        Rank playerOneCombination = rankService.findBestCombination(round.getPlayerOneCards());
+        Rank playerTwoCombination = rankService.findBestCombination(round.getPlayerTwoCards());
 
-        Map<String, Integer> combination = new HashMap<>();
+        RoundResult roundResult;
+        if (playerOneCombination == playerTwoCombination) {
+            // empatadado
+            roundResult = RoundResult.Tie;
+        } else if (playerOneCombination.getRankNumber() > playerTwoCombination.getRankNumber()) {
+            // player one wins
+            roundResult = RoundResult.PlayerOne;
+        } else {
+            // player two wins
+            roundResult = RoundResult.PlayerTwo;
+        }
 
-        values.forEach(value -> {
-
-            if (report.get(value) == 2) {
-                Integer numeberOfPairs = combination.get("pair") == null ? 0 : combination.get("pair");
-                combination.put("pair", ++numeberOfPairs);
-            } else if (report.get(value) == 3) {
-                Integer numeberOfPairs = combination.get("three") == null ? 0 : combination.get("three");
-                combination.put("three", ++numeberOfPairs);
-            } else if (report.get(value) == 4) {
-                System.out.println("Four of a kind");
-            }
-        });
-
-        System.out.println(combination);*/
+        return roundResult;
     }
 }

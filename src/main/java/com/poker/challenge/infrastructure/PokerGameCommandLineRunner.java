@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class PokerCommandLineRunner implements CommandLineRunner {
+public class PokerGameCommandLineRunner implements CommandLineRunner {
 
     private GameService gameService;
     private FileReader fileReader;
 
     @Autowired
-    public PokerCommandLineRunner(GameService gameService, FileReader fileReader) {
+    public PokerGameCommandLineRunner(GameService gameService, FileReader fileReader) {
         this.gameService = gameService;
         this.fileReader = fileReader;
     }

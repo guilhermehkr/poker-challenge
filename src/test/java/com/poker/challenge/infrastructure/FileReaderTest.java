@@ -11,6 +11,7 @@ import java.util.List;
 
 import static java.lang.String.format;
 import static java.lang.System.lineSeparator;
+import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.spy;
@@ -18,7 +19,6 @@ import static org.mockito.Mockito.verify;
 
 public class FileReaderTest {
 
-    public static final String EMPTY = "";
     private static final String LINES_FORMAT = "%s " + lineSeparator() + " %s";
 
     public static final String FIRST_HAND = "9C 9D 8D 7C 3C 2S KD TH 9H 8H";

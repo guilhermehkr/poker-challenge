@@ -54,6 +54,12 @@
 			<version>27.1-jre</version>
 		</dependency>
 
+		<dependency>
+			<groupId>one.util</groupId>
+			<artifactId>streamex</artifactId>
+			<version>0.6.8</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

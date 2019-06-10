@@ -6,15 +6,15 @@ import org.testng.annotations.DataProvider;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.poker.challenge.round.card.CardBuilder.aCard;
 
-public class PairTest extends SingleCombinationTest {
+public class TwoPairsTest extends SingleCombinationTest {
 
-    private final static boolean CONTAINS_PAIR = true;
+    private final static boolean CONTAINS_TWO_PAIRS = true;
 
-    private Pair testInstance;
+    private TwoPairs testInstance;
 
     @BeforeMethod
     public void setup() {
-        testInstance = new Pair();
+        testInstance = new TwoPairs();
     }
 
     @Override
@@ -24,7 +24,7 @@ public class PairTest extends SingleCombinationTest {
 
     @Override
     protected Rank getTestRank() {
-        return Rank.Pair;
+        return Rank.TwoPairs;
     }
 
     @DataProvider
@@ -32,11 +32,11 @@ public class PairTest extends SingleCombinationTest {
         return new Object[][]{
                 {
                         null,
-                        !CONTAINS_PAIR
+                        !CONTAINS_TWO_PAIRS
                 },
                 {
                         newArrayList(),
-                        !CONTAINS_PAIR
+                        !CONTAINS_TWO_PAIRS
                 },
                 {
                         newArrayList(
@@ -46,7 +46,17 @@ public class PairTest extends SingleCombinationTest {
                                 aCard().withStringCard("3C").build(),
                                 aCard().withStringCard("10C").build()
                         ),
-                        !CONTAINS_PAIR
+                        !CONTAINS_TWO_PAIRS
+                },
+                {
+                        newArrayList(
+                                aCard().withStringCard("3S").build(),
+                                aCard().withStringCard("9S").build(),
+                                aCard().withStringCard("4H").build(),
+                                aCard().withStringCard("4D").build(),
+                                aCard().withStringCard("2D").build()
+                        ),
+                        !CONTAINS_TWO_PAIRS
                 },
                 {
                         newArrayList(
@@ -56,7 +66,7 @@ public class PairTest extends SingleCombinationTest {
                                 aCard().withStringCard("4D").build(),
                                 aCard().withStringCard("11D").build()
                         ),
-                        !CONTAINS_PAIR
+                        !CONTAINS_TWO_PAIRS
                 },
                 {
                         newArrayList(
@@ -66,7 +76,7 @@ public class PairTest extends SingleCombinationTest {
                                 aCard().withStringCard("3D").build(),
                                 aCard().withStringCard("11D").build()
                         ),
-                        !CONTAINS_PAIR
+                        !CONTAINS_TWO_PAIRS
                 },
                 {
                         newArrayList(
@@ -76,7 +86,27 @@ public class PairTest extends SingleCombinationTest {
                                 aCard().withStringCard("4D").build(),
                                 aCard().withStringCard("11D").build()
                         ),
-                        !CONTAINS_PAIR
+                        CONTAINS_TWO_PAIRS
+                },
+                {
+                        newArrayList(
+                                aCard().withStringCard("14S").build(),
+                                aCard().withStringCard("14S").build(),
+                                aCard().withStringCard("6H").build(),
+                                aCard().withStringCard("6D").build(),
+                                aCard().withStringCard("2D").build()
+                        ),
+                        CONTAINS_TWO_PAIRS
+                },
+                {
+                        newArrayList(
+                                aCard().withStringCard("14S").build(),
+                                aCard().withStringCard("14S").build(),
+                                aCard().withStringCard("6H").build(),
+                                aCard().withStringCard("6D").build(),
+                                aCard().withStringCard("6D").build()
+                        ),
+                        !CONTAINS_TWO_PAIRS
                 },
                 {
                         newArrayList(
@@ -86,27 +116,7 @@ public class PairTest extends SingleCombinationTest {
                                 aCard().withStringCard("5D").build(),
                                 aCard().withStringCard("6D").build()
                         ),
-                        !CONTAINS_PAIR
-                },
-                {
-                        newArrayList(
-                                aCard().withStringCard("3S").build(),
-                                aCard().withStringCard("9S").build(),
-                                aCard().withStringCard("4H").build(),
-                                aCard().withStringCard("4D").build(),
-                                aCard().withStringCard("2D").build()
-                        ),
-                        CONTAINS_PAIR
-                },
-                {
-                        newArrayList(
-                                aCard().withStringCard("3S").build(),
-                                aCard().withStringCard("9S").build(),
-                                aCard().withStringCard("12H").build(),
-                                aCard().withStringCard("12D").build(),
-                                aCard().withStringCard("2D").build()
-                        ),
-                        CONTAINS_PAIR
+                        !CONTAINS_TWO_PAIRS
                 }
         };
     }

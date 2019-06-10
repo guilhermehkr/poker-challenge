@@ -75,8 +75,12 @@ public class HandsToRoundTransformerTest {
 
         Round round = testInstance.transform(hands);
 
+        assertThat(round.getPlayerOneCards(), is(playOneCards));
         assertThat(round.getPlayerOneCards(), contains(playOneCards.toArray()));
+
+        assertThat(round.getPlayerTwoCards(), is(playTwoCards));
         assertThat(round.getPlayerTwoCards(), contains(playTwoCards.toArray()));
+
         assertThat(round.isInvalidHand(), is(FALSE));
 
         verify(roundValidator).isAnInvalidRound(hands);

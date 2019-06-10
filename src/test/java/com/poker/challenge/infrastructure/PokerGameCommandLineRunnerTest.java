@@ -13,10 +13,10 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class PokerCommandLineRunnerTest {
+public class PokerGameCommandLineRunnerTest {
 
     @InjectMocks
-    private PokerCommandLineRunner testInstance;
+    private PokerGameCommandLineRunner testInstance;
 
     @Mock
     private GameService gameService;

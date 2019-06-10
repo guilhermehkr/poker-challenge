@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static com.poker.challenge.infrastructure.FileReaderTest.*;
+import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 

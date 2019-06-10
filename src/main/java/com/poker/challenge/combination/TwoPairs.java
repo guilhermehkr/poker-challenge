@@ -5,23 +5,25 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-public class ThreeOfAKind extends NumberOfAKind implements Combination {
+import static com.poker.challenge.combination.Pair.PAIR;
 
-    public final static Long THREE_OF_A_KIND = 3L;
+@Component
+public class TwoPairs extends NumberOfAKind implements Combination {
+
+    protected final static int TWO_COMBINATIONS_OF = 2;
 
     @Override
     public boolean checkCombination(List<Card> cards) {
-        return super.checkIf(cards, ONE_COMBINATION_OF, THREE_OF_A_KIND);
+        return super.checkIf(cards, TWO_COMBINATIONS_OF, PAIR);
     }
 
     @Override
     public Rank getRank() {
-        return Rank.ThreeOfAKind;
+        return Rank.TwoPairs;
     }
 
     @Override
     public int getOrder() {
-        return Rank.ThreeOfAKind.getSpringOrder();
+        return Rank.TwoPairs.getSpringOrder();
     }
 }

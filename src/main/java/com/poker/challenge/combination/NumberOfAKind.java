@@ -11,9 +11,9 @@ import static org.apache.commons.collections4.CollectionUtils.emptyIfNull;
 
 public abstract class NumberOfAKind {
 
-    protected final static int NUMBER_OF_COMBINATIONS = 1;
+    protected final static int ONE_COMBINATION_OF = 1;
 
-    boolean checkIf(List<Card> cards, final Long expectedNumberOfOccurrences, int expectedNumberOfCombinations) {
+    boolean checkIf(List<Card> cards, int expectedNumberOfCombinations, final Long expectedNumberOfOccurrences) {
 
         Map<String, Long> cardValueAndNumberOfOccurrence =
                 emptyIfNull(cards)
