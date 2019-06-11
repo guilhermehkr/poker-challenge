@@ -2,6 +2,7 @@ package com.poker.challenge.service;
 
 import com.poker.challenge.combination.RankService;
 import com.poker.challenge.combination.Rank;
+import com.poker.challenge.combination.tiebreaker.TieBreakerFactory;
 import com.poker.challenge.round.Round;
 import com.poker.challenge.round.RoundResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,28 +15,40 @@ public class PokerService {
 
     private RankService rankService;
 
+    private TieBreakerFactory tieBreakerFactory;
+
     @Autowired
-    public PokerService(RankService rankService) {
+    public PokerService(RankService rankService, TieBreakerFactory tieBreakerFactory) {
         this.rankService = rankService;
+        this.tieBreakerFactory = tieBreakerFactory;
     }
 
-    public RoundResult play(final Round round) {
+    public RoundResult play(Round round) {
 
         Rank playerOneCombination = rankService.findBestCombination(round.getPlayerOneCards());
         Rank playerTwoCombination = rankService.findBestCombination(round.getPlayerTwoCards());
 
-        RoundResult roundResult;
-        if (playerOneCombination == playerTwoCombination) {
-            // empatadado
-            roundResult = RoundResult.Tie;
-        } else if (playerOneCombination.getRankNumber() > playerTwoCombination.getRankNumber()) {
-            // player one wins
+        return RoundResult.decideWhoTheWinnerIs(
+                playerOneCombination.getRankNumber(),
+                playerTwoCombination.getRankNumber(),
+                () -> tieBreakerFactory
+                        .newTieBreaker(playerOneCombination)
+                        .breakTie(round.getPlayerOneCards(), round.getPlayerTwoCards())
+        );
+
+        /*RoundResult roundResult;
+        if (playerOneCombination.getRankNumber() > playerTwoCombination.getRankNumber()) {
             roundResult = RoundResult.PlayerOne;
-        } else {
-            // player two wins
+        } else if (playerTwoCombination.getRankNumber() > playerOneCombination.getRankNumber()) {
             roundResult = RoundResult.PlayerTwo;
+        } else {
+            roundResult =
+                    tieBreakerFactory
+                            .newTieBreaker(playerOneCombination)
+                            .breakTie(round.getPlayerOneCards(), round.getPlayerTwoCards());
+
         }
 
-        return roundResult;
+        return roundResult;*/
     }
 }

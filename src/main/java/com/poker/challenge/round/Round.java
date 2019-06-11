@@ -4,7 +4,6 @@ import com.poker.challenge.round.card.Card;
 
 import java.util.List;
 
-import static java.util.Collections.unmodifiableList;
 import static org.apache.commons.lang.builder.ToStringBuilder.reflectionToString;
 
 public class Round {
@@ -14,8 +13,8 @@ public class Round {
     private boolean isInvalidHand;
 
     Round(List<Card> playerOneCards, List<Card> playerTwoCards, boolean isInvalidHand) {
-        this.playerOneCards = unmodifiableList(playerOneCards);
-        this.playerTwoCards = unmodifiableList(playerTwoCards);
+        this.playerOneCards = playerOneCards;
+        this.playerTwoCards = playerTwoCards;
         this.isInvalidHand = isInvalidHand;
     }
 

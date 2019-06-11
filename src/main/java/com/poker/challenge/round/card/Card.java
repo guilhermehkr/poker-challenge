@@ -48,6 +48,11 @@ public class Card implements Comparable<Card> {
     }
 
     @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
+    @Override
     public String toString() {
         return getValueAndSuit();
     }
