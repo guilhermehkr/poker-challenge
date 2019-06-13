@@ -1,6 +1,6 @@
 package com.poker.challenge.service;
 
-import com.poker.challenge.combination.RankService;
+import com.poker.challenge.combination.RankProvider;
 import com.poker.challenge.combination.Rank;
 import com.poker.challenge.combination.tiebreaker.TieBreakerFactory;
 import com.poker.challenge.round.Round;
@@ -13,42 +13,27 @@ import static java.util.stream.Collectors.groupingBy;
 @Service
 public class PokerService {
 
-    private RankService rankService;
+    private RankProvider rankProvider;
 
     private TieBreakerFactory tieBreakerFactory;
 
     @Autowired
-    public PokerService(RankService rankService, TieBreakerFactory tieBreakerFactory) {
-        this.rankService = rankService;
+    public PokerService(RankProvider rankProvider, TieBreakerFactory tieBreakerFactory) {
+        this.rankProvider = rankProvider;
         this.tieBreakerFactory = tieBreakerFactory;
     }
 
     public RoundResult play(Round round) {
 
-        Rank playerOneCombination = rankService.findBestCombination(round.getPlayerOneCards());
-        Rank playerTwoCombination = rankService.findBestCombination(round.getPlayerTwoCards());
+        Rank playerOneRank = rankProvider.findBestRank(round.getPlayerOneCards());
+        Rank playerTwoRank = rankProvider.findBestRank(round.getPlayerTwoCards());
 
         return RoundResult.decideWhoTheWinnerIs(
-                playerOneCombination.getRankNumber(),
-                playerTwoCombination.getRankNumber(),
+                playerOneRank.getRankNumber(),
+                playerTwoRank.getRankNumber(),
                 () -> tieBreakerFactory
-                        .newTieBreaker(playerOneCombination)
+                        .newTieBreaker(playerOneRank)
                         .breakTie(round.getPlayerOneCards(), round.getPlayerTwoCards())
         );
-
-        /*RoundResult roundResult;
-        if (playerOneCombination.getRankNumber() > playerTwoCombination.getRankNumber()) {
-            roundResult = RoundResult.PlayerOne;
-        } else if (playerTwoCombination.getRankNumber() > playerOneCombination.getRankNumber()) {
-            roundResult = RoundResult.PlayerTwo;
-        } else {
-            roundResult =
-                    tieBreakerFactory
-                            .newTieBreaker(playerOneCombination)
-                            .breakTie(round.getPlayerOneCards(), round.getPlayerTwoCards());
-
-        }
-
-        return roundResult;*/
     }
 }

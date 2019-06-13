@@ -4,7 +4,7 @@ import com.poker.challenge.round.RoundValidator;
 import com.poker.challenge.round.card.Card;
 import com.poker.challenge.round.Round;
 import com.poker.challenge.round.RoundBuilder;
-import com.poker.challenge.transformer.Transformer;
+import org.apache.commons.collections4.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

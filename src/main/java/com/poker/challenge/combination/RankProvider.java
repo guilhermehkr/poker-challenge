@@ -7,28 +7,31 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static org.apache.commons.collections4.CollectionUtils.isEmpty;
 import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 
 @Service
-public class RankService {
+public class RankProvider {
+
+    static final String NO_DEFAULT_COMBINATION_ERROR_MESSAGE = "HighCard should be the default combination";
+    static final String NO_COMBINATIONS_ERROR_MESSAGE = "Spring should wire all Combination instances";
+    static final String NO_RANK_MAPPING_COMBINATION_ERROR_MESSAGE = "All combinations should be mapped in com.poker.challenge.combination.Rank";
 
     private List<Combination> combinations;
 
-    public Rank findBestCombination(final List<Card> cards) {
+    public Rank findBestRank(final List<Card> cards) {
         return combinations
                 .stream()
                 .filter(combination -> combination.checkCombination(cards))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("HighCard should be the default combination"))
+                .orElseThrow(() -> new RuntimeException(NO_DEFAULT_COMBINATION_ERROR_MESSAGE))
                 .getRank();
     }
 
     @Autowired
     public void setCombinations(List<Combination> combinations) {
-        checkArgument(isNotEmpty(combinations), "Spring should wire all Combination instances");
+        checkArgument(isNotEmpty(combinations), NO_COMBINATIONS_ERROR_MESSAGE);
         checkArgument(combinations.size() == Rank.values().length,
-                "All combinations should be mapped in com.poker.challenge.combination.Rank");
+                NO_RANK_MAPPING_COMBINATION_ERROR_MESSAGE);
 
         this.combinations = combinations;
     }

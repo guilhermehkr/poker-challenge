@@ -1,7 +1,7 @@
 package com.poker.challenge.round.hand;
 
 import com.poker.challenge.round.card.Card;
-import com.poker.challenge.transformer.Transformer;
+import org.apache.commons.collections4.Transformer;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -8,7 +8,7 @@ import java.util.List;
 @Component
 public class Pair extends NumberOfAKind implements Combination {
 
-    public final static Long PAIR = 2L;
+    final static Long PAIR = 2L;
 
     @Override
     public boolean checkCombination(List<Card> cards) {

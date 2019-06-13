@@ -11,6 +11,7 @@ import java.util.List;
 
 import static com.poker.challenge.round.card.CardBuilder.aCard;
 import static com.poker.challenge.round.hand.HandToCardsTransformer.ACE_NUMBER;
+import static com.poker.challenge.round.hand.HandToCardsTransformer.JACK_NUMBER;
 import static com.poker.challenge.round.hand.HandToCardsTransformer.TEN_NUMBER;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -23,13 +24,23 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class RoyalFlushTest {
+public class RoyalFlushTest extends BaseCombinationTest {
 
     @InjectMocks
     private RoyalFlush testInstance;
 
     @Mock
     private StraightFlush straightFlush;
+
+    @Override
+    protected Combination getTestInstance() {
+        return testInstance;
+    }
+
+    @Override
+    protected Rank getTestRank() {
+        return Rank.RoyalFlush;
+    }
 
     @BeforeMethod
     public void setup() {
@@ -54,6 +65,9 @@ public class RoyalFlushTest {
                 {
                         newArrayList(
                                 aCard()
+                                        .withValue(JACK_NUMBER)
+                                        .build(),
+                                aCard()
                                         .withValue(TEN_NUMBER)
                                         .build()
                         ),
@@ -65,6 +79,12 @@ public class RoyalFlushTest {
                         newArrayList(
                                 aCard()
                                         .withValue(ACE_NUMBER)
+                                        .build(),
+                                aCard()
+                                        .withValue(TEN_NUMBER)
+                                        .build(),
+                                aCard()
+                                        .withValue(JACK_NUMBER)
                                         .build()
                         ),
                         FALSE,
@@ -75,6 +95,9 @@ public class RoyalFlushTest {
                         newArrayList(
                                 aCard()
                                         .withValue(ACE_NUMBER)
+                                        .build(),
+                                aCard()
+                                        .withValue(JACK_NUMBER)
                                         .build()
                         ),
                         TRUE,

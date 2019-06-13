@@ -40,52 +40,52 @@ public class PairTieBreakerTest {
         return new Object[][]{
                 {
                         newArrayList(
-                                aCard().withValue("10").build(),
-                                aCard().withValue("10").build(),
-                                aCard().withValue("2").build(),
-                                aCard().withValue("6").build(),
-                                aCard().withValue("5").build()
+                                aCard().withStringCard("10S").build(),
+                                aCard().withStringCard("10C").build(),
+                                aCard().withStringCard("2D").build(),
+                                aCard().withStringCard("6H").build(),
+                                aCard().withStringCard("5S").build()
                         ),
                         newArrayList(
-                                aCard().withValue("10").build(),
-                                aCard().withValue("10").build(),
-                                aCard().withValue("2").build(),
-                                aCard().withValue("6").build(),
-                                aCard().withValue("5").build()
+                                aCard().withStringCard("10C").build(),
+                                aCard().withStringCard("10S").build(),
+                                aCard().withStringCard("2D").build(),
+                                aCard().withStringCard("6H").build(),
+                                aCard().withStringCard("5S").build()
                         ),
                         Tie
                 },
                 {
                         newArrayList(
-                                aCard().withValue("10").build(),
-                                aCard().withValue("3").build(),
-                                aCard().withValue("3").build(),
-                                aCard().withValue("6").build(),
-                                aCard().withValue("5").build()
+                                aCard().withStringCard("10C").build(),
+                                aCard().withStringCard("3D").build(),
+                                aCard().withStringCard("3H").build(),
+                                aCard().withStringCard("6S").build(),
+                                aCard().withStringCard("5C").build()
                         ),
                         newArrayList(
-                                aCard().withValue("10").build(),
-                                aCard().withValue("2").build(),
-                                aCard().withValue("2").build(),
-                                aCard().withValue("6").build(),
-                                aCard().withValue("5").build()
+                                aCard().withStringCard("10D").build(),
+                                aCard().withStringCard("2H").build(),
+                                aCard().withStringCard("2S").build(),
+                                aCard().withStringCard("6C").build(),
+                                aCard().withStringCard("5D").build()
                         ),
                         PlayerOne
                 },
                 {
                         newArrayList(
-                                aCard().withValue("10").build(),
-                                aCard().withValue("1").build(),
-                                aCard().withValue("3").build(),
-                                aCard().withValue("5").build(),
-                                aCard().withValue("5").build()
+                                aCard().withStringCard("10H").build(),
+                                aCard().withStringCard("1S").build(),
+                                aCard().withStringCard("3C").build(),
+                                aCard().withStringCard("5D").build(),
+                                aCard().withStringCard("5H").build()
                         ),
                         newArrayList(
-                                aCard().withValue("10").build(),
-                                aCard().withValue("2").build(),
-                                aCard().withValue("3").build(),
-                                aCard().withValue("6").build(),
-                                aCard().withValue("6").build()
+                                aCard().withStringCard("10S").build(),
+                                aCard().withStringCard("2C").build(),
+                                aCard().withStringCard("3D").build(),
+                                aCard().withStringCard("6H").build(),
+                                aCard().withStringCard("6S").build()
                         ),
                         PlayerTwo
                 }

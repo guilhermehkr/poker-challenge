@@ -11,12 +11,13 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.poker.challenge.combination.Rank.HighCard;
+import static com.poker.challenge.combination.Rank.Straight;
 import static com.poker.challenge.round.RoundResult.*;
 import static com.poker.challenge.round.card.CardBuilder.aCard;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class HighCardTieBreakerTest extends BaseTieBreakerTest {
+public class StraightTieBreakerTest extends BaseTieBreakerTest {
 
     private HighCardTieBreaker testInstance;
 
@@ -32,7 +33,7 @@ public class HighCardTieBreakerTest extends BaseTieBreakerTest {
 
     @Override
     protected Rank getRelatedRank() {
-        return HighCard;
+        return Straight;
     }
 
     @DataProvider

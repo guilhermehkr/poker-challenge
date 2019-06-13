@@ -1,12 +1,19 @@
 package com.poker.challenge.combination;
 
+import com.google.common.collect.PeekingIterator;
 import com.poker.challenge.round.card.Card;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static com.google.common.collect.Iterables.getLast;
-import static java.util.stream.Collectors.toList;
+import static com.google.common.collect.Iterators.peekingIterator;
+import static com.poker.challenge.util.ListUtil.tail;
+import static java.util.Comparator.naturalOrder;
+import static org.apache.commons.collections4.CollectionUtils.isEmpty;
 import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 
 @Component
@@ -15,20 +22,23 @@ public class Straight implements Combination {
     @Override
     public boolean checkCombination(List<Card> cards) {
 
-        boolean result = false;
-        if (isNotEmpty(cards)) {
-
-            List<Card> sortedCards = cards
-                    .stream()
-                    .sorted()
-                    .collect(toList());
-
-            Card first = sortedCards.iterator().next();
-            Card last = getLast(sortedCards);
-
-            result = first.getValueAsInt() == (last.getValueAsInt() - 4);
+        if (isEmpty(cards)) {
+            return false;
         }
-        return result;
+
+        if (cards.size() == 1) {
+            return true;
+        }
+
+        cards.sort(naturalOrder());
+        PeekingIterator<Card> cardsIterator = peekingIterator(cards.iterator());
+
+        Card currentCard = cardsIterator.next();
+        Card nextCard = cardsIterator.peek();
+
+        return cardsIterator.hasNext()
+                        && currentCard.getValueAsInt() == nextCard.getValueAsInt() - 1
+                        && checkCombination(tail(cards));
     }
 
     @Override

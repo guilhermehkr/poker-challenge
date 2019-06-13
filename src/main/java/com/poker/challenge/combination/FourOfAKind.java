@@ -8,7 +8,7 @@ import java.util.List;
 @Component
 public class FourOfAKind extends NumberOfAKind implements Combination {
 
-    public final static Long FOUR_OF_A_KIND = 4L;
+    private final static Long FOUR_OF_A_KIND = 4L;
 
     @Override
     public boolean checkCombination(List<Card> cards) {

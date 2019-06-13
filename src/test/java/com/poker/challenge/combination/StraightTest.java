@@ -40,11 +40,11 @@ public class StraightTest extends SingleCombinationTest {
                 },
                 {
                         newArrayList(
-                                aCard().withStringCard("14C").build(),
-                                aCard().withStringCard("2D").build(),
+                                aCard().withStringCard("5C").build(),
+                                aCard().withStringCard("5D").build(),
                                 aCard().withStringCard("7D").build(),
-                                aCard().withStringCard("3C").build(),
-                                aCard().withStringCard("10C").build()
+                                aCard().withStringCard("8C").build(),
+                                aCard().withStringCard("9C").build()
                         ),
                         !IS_STRAIGHT
                 },

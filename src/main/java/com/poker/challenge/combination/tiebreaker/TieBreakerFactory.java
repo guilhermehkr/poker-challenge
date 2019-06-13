@@ -27,7 +27,5 @@ public class TieBreakerFactory {
                                 .correspondingRanks()
                                 .forEach(rank -> tieBreakers.put(rank, tieBreaker))
                 );
-
-        tieBreakers.forEach((rank, tieBreaker) -> System.out.println(rank.toString() + tieBreaker.getClass().getCanonicalName()));
     }
 }

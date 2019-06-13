@@ -10,7 +10,7 @@ import static com.poker.challenge.combination.Pair.PAIR;
 @Component
 public class TwoPairs extends NumberOfAKind implements Combination {
 
-    protected final static int TWO_COMBINATIONS_OF = 2;
+    private final static int TWO_COMBINATIONS_OF = 2;
 
     @Override
     public boolean checkCombination(List<Card> cards) {

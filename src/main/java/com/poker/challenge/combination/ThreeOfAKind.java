@@ -8,7 +8,7 @@ import java.util.List;
 @Component
 public class ThreeOfAKind extends NumberOfAKind implements Combination {
 
-    public final static Long THREE_OF_A_KIND = 3L;
+    private final static Long THREE_OF_A_KIND = 3L;
 
     @Override
     public boolean checkCombination(List<Card> cards) {
