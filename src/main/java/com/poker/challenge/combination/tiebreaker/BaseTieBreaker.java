@@ -16,7 +16,7 @@ import static org.apache.commons.collections4.CollectionUtils.emptyIfNull;
 
 abstract class BaseTieBreaker {
 
-    private final static Integer DEFAULT_CARD_VALUE = 0;
+    final static Integer DEFAULT_CARD_VALUE = 0;
 
     Integer getFirstPlayersCard(List<Card> playersCards) {
         return head(playersCards)
@@ -24,12 +24,12 @@ abstract class BaseTieBreaker {
                 .orElse(DEFAULT_CARD_VALUE);
     }
 
-    List<Card> collectPlayersCardInOrderOfImportance(List<Card> playersCards) {
+    List<Integer> collectPlayersCardInOrderOfImportance(List<Card> playersCards) {
 
-        Map<Card, Long> cardsAndNumberOfOccurrences =
+        Map<Integer, Long> cardsAndNumberOfOccurrences =
                 emptyIfNull(playersCards)
                         .stream()
-                        .collect(groupingBy(identity(), counting()));
+                        .collect(groupingBy(Card::getValueAsInt, counting()));
 
         return cardsAndNumberOfOccurrences
                 .entrySet()

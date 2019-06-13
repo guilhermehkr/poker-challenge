@@ -19,21 +19,21 @@ public class TwoPairsTieBreaker extends BaseTieBreaker implements TieBreaker {
     @Override
     public RoundResult breakTie(List<Card> playerOneCards, List<Card> playerTwoCards) {
 
-        List<Card> sortedPlayerOneCards = super.collectPlayersCardInOrderOfImportance(playerOneCards);
-        List<Card> sortedPlayerTwoCards = super.collectPlayersCardInOrderOfImportance(playerTwoCards);
+        List<Integer> sortedPlayerOneCards = super.collectPlayersCardInOrderOfImportance(playerOneCards);
+        List<Integer> sortedPlayerTwoCards = super.collectPlayersCardInOrderOfImportance(playerTwoCards);
 
-        List<Card> twoPairsOfPlayerOne = getTwoPairsInOrder(sortedPlayerOneCards);
-        List<Card> twoPairsOfPlayerTwo = getTwoPairsInOrder(sortedPlayerTwoCards);
+        List<Integer> twoPairsOfPlayerOne = getTwoPairsInOrder(sortedPlayerOneCards);
+        List<Integer> twoPairsOfPlayerTwo = getTwoPairsInOrder(sortedPlayerTwoCards);
 
         RoundResult roundResult = RoundResult.Tie;
 
         for (int index = 0; index < twoPairsOfPlayerOne.size(); index++) {
-            Card card = twoPairsOfPlayerOne.get(index);
-            Card card2 = twoPairsOfPlayerTwo.get(index);
+            Integer card = twoPairsOfPlayerOne.get(index);
+            Integer card2 = twoPairsOfPlayerTwo.get(index);
 
             roundResult = RoundResult.decideWhoTheWinnerIs(
-                    card.getValueAsInt(),
-                    card2.getValueAsInt(),
+                    card,
+                    card2,
                     () -> RoundResult.Tie
             );
 
@@ -43,12 +43,12 @@ public class TwoPairsTieBreaker extends BaseTieBreaker implements TieBreaker {
         }
 
         if (roundResult.equals(RoundResult.Tie)) {
-            Card last1 = Iterables.getLast(sortedPlayerOneCards);
-            Card last2 = Iterables.getLast(sortedPlayerTwoCards);
+            Integer last1 = Iterables.getLast(sortedPlayerOneCards);
+            Integer last2 = Iterables.getLast(sortedPlayerTwoCards);
 
             roundResult = RoundResult.decideWhoTheWinnerIs(
-                    last1.getValueAsInt(),
-                    last2.getValueAsInt(),
+                    last1,
+                    last2,
                     () -> RoundResult.Tie
             );
         }
@@ -61,7 +61,7 @@ public class TwoPairsTieBreaker extends BaseTieBreaker implements TieBreaker {
         return Sets.newHashSet(Rank.TwoPairs);
     }
 
-    private List<Card> getTwoPairsInOrder(List<Card> playersCards) {
+    private List<Integer> getTwoPairsInOrder(List<Integer> playersCards) {
         return playersCards
                 .subList(0, 2)
                 .stream()
