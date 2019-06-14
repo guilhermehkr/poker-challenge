@@ -1,5 +1,6 @@
 package com.poker.challenge.combination.tiebreaker;
 
+import com.poker.challenge.combination.Rank;
 import com.poker.challenge.round.RoundResult;
 import com.poker.challenge.round.card.Card;
 import org.mockito.*;
@@ -22,7 +23,7 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class PairTieBreakerTest {
+public class PairTieBreakerTest extends BaseTieBreakerTest {
 
     @InjectMocks
     private PairTieBreaker testInstance;
@@ -33,6 +34,16 @@ public class PairTieBreakerTest {
     @BeforeMethod
     public void setup() {
         initMocks(this);
+    }
+
+    @Override
+    protected TieBreaker getTestInstance() {
+        return testInstance;
+    }
+
+    @Override
+    protected Rank getRelatedRank() {
+        return Rank.Pair;
     }
 
     @DataProvider

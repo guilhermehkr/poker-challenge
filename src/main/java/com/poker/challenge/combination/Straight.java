@@ -22,9 +22,22 @@ public class Straight implements Combination {
     @Override
     public boolean checkCombination(List<Card> cards) {
 
-        if (isEmpty(cards)) {
-            return false;
-        }
+        return isNotEmpty(cards)
+                && cards.size() == 5
+                && checkStraightCombination(cards);
+    }
+
+    @Override
+    public Rank getRank() {
+        return Rank.Straight;
+    }
+
+    @Override
+    public int getOrder() {
+        return Rank.Straight.getSpringOrder();
+    }
+
+    private boolean checkStraightCombination(List<Card> cards) {
 
         if (cards.size() == 1) {
             return true;
@@ -37,17 +50,7 @@ public class Straight implements Combination {
         Card nextCard = cardsIterator.peek();
 
         return cardsIterator.hasNext()
-                        && currentCard.getValueAsInt() == nextCard.getValueAsInt() - 1
-                        && checkCombination(tail(cards));
-    }
-
-    @Override
-    public Rank getRank() {
-        return Rank.Straight;
-    }
-
-    @Override
-    public int getOrder() {
-        return Rank.Straight.getSpringOrder();
+                && currentCard.getValueAsInt() == nextCard.getValueAsInt() - 1
+                && checkStraightCombination(tail(cards));
     }
 }

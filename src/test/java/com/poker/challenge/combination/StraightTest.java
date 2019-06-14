@@ -1,5 +1,6 @@
 package com.poker.challenge.combination;
 
+import com.poker.challenge.round.card.CardBuilder;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 
@@ -36,6 +37,10 @@ public class StraightTest extends SingleCombinationTest {
                 },
                 {
                         newArrayList(),
+                        !IS_STRAIGHT
+                },
+                {
+                        newArrayList(CardBuilder.aCard().build()),
                         !IS_STRAIGHT
                 },
                 {

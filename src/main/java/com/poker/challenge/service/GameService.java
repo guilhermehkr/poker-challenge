@@ -1,5 +1,6 @@
 package com.poker.challenge.service;
 
+import com.poker.challenge.round.Round;
 import com.poker.challenge.round.RoundResult;
 import com.poker.challenge.round.hand.HandsToRoundTransformer;
 import com.poker.challenge.service.printer.GameReportPrinter;
@@ -35,6 +36,7 @@ public class GameService {
         Map<RoundResult, Long> summarisedResults =
                 hands.stream()
                         .map(handsToRoundTransformer::transform)
+                        .filter(Round::isValidHand)
                         .map(pokerService::play)
                         .collect(groupingBy(identity(), counting()));
 

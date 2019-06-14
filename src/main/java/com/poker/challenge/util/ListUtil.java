@@ -11,6 +11,10 @@ import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 
 public class ListUtil {
 
+    public final static int FIRST_ELEMENT = 0;
+    public final static int FIRST_INDEX = 0;
+    public final static int SECOND_INDEX = 1;
+
     public static <T> Optional<T> head(List<T> list) {
 
         if (isEmpty(list)) {
@@ -18,8 +22,8 @@ public class ListUtil {
         }
 
         T head = emptyIfNull(list)
-                .subList(0, 1)
-                .get(0);
+                .subList(FIRST_INDEX, SECOND_INDEX)
+                .get(FIRST_ELEMENT);
 
         return ofNullable(head);
     }
@@ -28,6 +32,7 @@ public class ListUtil {
         if (isEmpty(list)) {
             return emptyList();
         }
-        return emptyIfNull(list).subList(1, list.size());
+        return emptyIfNull(list)
+                .subList(SECOND_INDEX, list.size());
     }
 }
