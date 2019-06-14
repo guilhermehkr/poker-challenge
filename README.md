@@ -17,4 +17,4 @@ open -a "Google Chrome" target/site/jacoco/index.html
 
 `#IMPROVEMENT-2` - I'm not sure whether I should've designed a `TwoPairTieBreaker` given the `PairTieBreaker` may not be enough to cover all two pair scenarios
 
-`#IMPROVEMENT-3` - I could've written unit test for this class, however, I did not think it was necessary
+`#IMPROVEMENT-3` - I could've written unit test for `GameReportPrinter` class, however, I did not think it was necessary
