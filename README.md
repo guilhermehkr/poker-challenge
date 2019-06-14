@@ -1,5 +1,9 @@
 # Poker Hand Sorter
 
+### Requirements
+- Apache Maven `3.5.4`<br>
+- Java version `1.8.0_192` 
+
 ### Running the application
 Within the project folder, please run the following:
 ```
@@ -8,7 +12,7 @@ mvn clean package && cat poker-hands.txt | java -jar target/poker-challenge-0.0.
 
 ### Opening test coverage results
 Within the project folder, please run: (Note: replace Google Chrome with you desired web browser)
-```$xslt
+```
 open -a "Google Chrome" target/site/jacoco/index.html
 ```
 
